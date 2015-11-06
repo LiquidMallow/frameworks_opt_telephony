@@ -1562,8 +1562,14 @@ final class GsmServiceStateTracker extends ServiceStateTracker {
         String onsl = s.getOperatorAlphaLong();
         String onss = s.getOperatorAlphaShort();
 
-        boolean equalsOnsl = onsl != null && spn != null && !spn.isEmpty() && spn.equals(onsl);
-        boolean equalsOnss = onss != null && spn != null && !spn.isEmpty() && spn.equals(onss);
+        boolean equalsOnsl = onsl != null &&
+                    spn != null &&
+                    !spn.isEmpty() &&
+                    spn.equalsIgnoreCase(onsl);
+        boolean equalsOnss = onss != null &&
+                    spn != null &&
+                    !spn.isEmpty() &&
+                    spn.equalsIgnoreCase(onss);
 
         return currentMccEqualsSimMcc(s) && (equalsOnsl || equalsOnss);
     }
